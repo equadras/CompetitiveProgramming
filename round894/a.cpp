@@ -3,15 +3,16 @@
 using namespace std;
 //#define int long long
 
+char arr[22][22];
 void solve(){
-    int n, m;
-    cin >> n >> m;
-    char arr [n][m];
+
+    int n, m; cin >> n >> m;
     for(int i = 0; i < n; i++){
         for(int j = 0; j < m; j++){
             cin >> arr[i][j];
         }
     }
+
     int v=0, ii = 0, k = 0, a = 0;
     for(int i = 0; i < m;i++){
         for(int j = 0; j < n; j++){
@@ -45,7 +46,9 @@ void solve(){
     }
     if(v == 1 && ii == 1 && k == 1 && a == 1) cout << "YES" << endl;
     else cout << "NO" << endl;
+ 
 }
+
 
 signed main(){
     ios_base::sync_with_stdio(0);cin.tie(0);
