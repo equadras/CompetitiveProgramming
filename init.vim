@@ -1,3 +1,152 @@
+
+call plug#begin()
+" The default plugin directory will be as follows:
+"   - Vim (Linux/macOS): '~/.vim/plugged'
+"   - Vim (Windows): '~/vimfiles/plugged'
+"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
+" You can specify a custom plugin directory by passing it as the argument
+"   - e.g. `call plug#begin('~/.vim/plugged')`
+"   - Avoid using standard Vim directory names like 'plugin'
+
+" Make sure you use single quotes
+" Plug 'nanotech/jellybeans.vim', { 'tag': 'v1.7' }
+Plug 'jiangmiao/auto-pairs'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+Plug 'mhinz/vim-startify'
+Plug 'luochen1990/rainbow'
+Plug 'tpope/vim-commentary'
+Plug 'scrooloose/syntastic'
+" Plug 'morhetz/gruvbox'
+Plug 'crusoexia/vim-monokai'
+Plug 'tomasr/molokai'
+
+
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX))
+  if (has("nvim"))
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
+
+" Initialize plugin system
+call plug#end()
+
+colorscheme monokai
+
+" Use a line cursor within insert mode and a block cursor everywhere else.
+"
+" Reference chart of values:
+"   Ps = 0  -> blinking block.
+"   Ps = 1  -> blinking block (default).
+"   Ps = 2  -> steady block.
+"   Ps = 3  -> blinking underline.
+"   Ps = 4  -> steady underline.
+"   Ps = 5  -> blinking bar (xterm).
+"   Ps = 6  -> steady bar (xterm).
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
+" match brackets colors
+let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+
+" change shell to zsh
+"set shell=/usr/bin/zsh
+
+" change working directory
+autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
+
+" test (lines after EOF)
+set scrolloff=10
+
+" Don't try to be vi compatible
+set nocompatible
+
+" Helps force plugins to load correctly when it is turned back on below
+filetype on
+
+" Turn on syntax highlighting
+syntax on
+
+" For plugins to load correctly
+filetype plugin indent on
+
+" TODO: Pick a leader key
+let mapleader = ","
+
+" Security
+set modelines=0
+
+" Show line numbers
+set number
+
+" Show relative line number
+set relativenumber
+
+" Show file stats
+set ruler
+
+" Blink cursor on error instead of beeping (grr)
+set belloff=all
+
+" Encoding
+set encoding=utf-8
+
+" Whitespace
+set wrap
+set textwidth=80
+set formatoptions=tcqrn1
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set noshiftround
+
+" Cursor motion
+set backspace=indent,eol,start
+set matchpairs+=<:> " use % to jump between pairs
+runtime! macros/matchit.vim
+
+" Allow hidden buffers
+set hidden
+
+" Rendering
+set ttyfast
+
+" Status bar
+set laststatus=2
+
+" Searching
+" nnoremap / /\v
+" vnoremap / /\v
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set showmatch
+" map <leader><space> :let @/=''<cr> " clear search
+
+" Remap help key.
+" inoremap <F1> <ESC>:set invfullscreen<CR>a
+" nnoremap <F1> :set invfullscreen<CR>
+" vnoremap <F1> :set invfullscreen<CR>
+autocmd filetype cpp nnoremap <F2> :r /home/ema/Documents/templates/testcase1.cpp <Return> kdd :5 <Return> o
+" Textmate holdouts
+
+" Formatting
+map <leader>q gqip
+
+" Visualize tabs and newlines
+set listchars=tab:▸\ ,eol:¬
 " Uncomment this to enable by default:
 " set list " To enable by default
 " Or use your leader key + l to toggle on/off
