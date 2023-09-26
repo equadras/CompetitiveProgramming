@@ -1,54 +1,56 @@
 #include <bits/stdc++.h>
- 
+
 using namespace std;
 #define int long long
- 
-const int maxn = 2e5+5;
-vector<int> arr(maxn+1);
+
+int maxn = 2*1e5+5;
+
 vector<int> seg(4*maxn);
-int n;
- 
-void build(int l, int r, int v){
+vector<int> arr(maxn);
+int n, neutral = 0;
+
+void build(int v, int l, int r){
     if(l == r){
-        seg[v] = arr[l];
+        seg[v] == arr[l];
         return;
     }
     int mid = (l+r)/2;
-    build(l,mid, 2*v);
-    build(mid+1,r,2*v+1);
-    seg[v] = seg[2*v] + seg[2*v+1];
+    build(2*v, l ,mid); 
+    build(2*v+1, mid +1,r); 
 }
- 
 void update(int v, int l, int r, int id, int x){
-    if(r == l){
-        arr[id] = x; 
-        seg[v] = x; 
-        return;
-    }
+    if(l == r){
+        seg[v] = x;
+        arr[id] = x;
+    } 
     int mid = (l+r)/2;
     if(id <= mid) update(2*v, l, mid, id, x);
     else update(2*v+1, mid+1, r, id, x);
     seg[v] = seg[2*v] + seg[2*v+1];
 }
- 
 void update(int id, int x){
-    update(1, 1, n, id, x);
+    update(1, 1, n-1, id, x);
 }
- 
-int query(int v, int l, int r, int L, int R){
-    if(L > r || R < l) return 0;
-    if(l >= L && r <= R) return seg[v];
-    else {
-        int mid = (l+r)/2;
-        return query(v*2, l, mid, L, R) + query(v*2+1, mid+1, r, L, R); 
+
+
+int query(int v,int ln, int rn, int l, int r){
+    if(r > ln || rn < l){
+        return neutral;
     }
-    return 0;
+    int mid = (l+r)/2;
+    if(ln >= l && rn <= r){
+        return seg[v];
+    }
+    else {
+        return query(2*v, ln, mid, l, r) + query(2*v+1, mid+1, rn, l, r);
+    }
 }
- 
-int query(int L, int R){
-    return query(1, 1, n, L, R);
+
+
+int query(int l, int r){
+    return query(1, 1, n-1, l, r);
 }
- 
+
 void solve(){
     int q; cin >> n >> q;
     for(int i = 1; i <= n; i++) cin >> arr[i];
@@ -64,12 +66,12 @@ void solve(){
         cout << res << endl; 
         }
     }
- 
+    
 }
- 
+
 signed main(){
     ios_base::sync_with_stdio(0);cin.tie(0);
-    int TC = 0;
+    int TC = 1;
     if(TC){
         cin >> TC;
         while(TC--) solve();
