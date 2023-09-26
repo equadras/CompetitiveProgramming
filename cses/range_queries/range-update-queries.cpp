@@ -5,6 +5,7 @@ using namespace std;
 
 int maxn = 2*1e5+5;
 
+//aaaaaaaaaaaaaaaaaaaaa testando chave sshhhhhhhhhhhhhhhh
 vector<int> seg(4*maxn);
 vector<int> arr(maxn);
 int n, neutral = 0;
