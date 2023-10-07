@@ -3,40 +3,53 @@
 using namespace std;
 //#define int long long
 
+const int maxn = 2e5+5;
+
+vector<int> a(maxn);
+vector<int> h(maxn);
+vector<int> pref(maxn);
+vector<int> tam(maxn);
+
 void solve(){
-    int n, k;
-    cin >> n >> k;
-    vector<int> h(n + 1), a(n + 1);
-    vector<int> p(n + 1);
-    for (int i = 1; i <= n; i++) {
+    int n, k; cin >> n >> k;
+    for(int i = 0; i < n; i++){
         cin >> a[i];
-        p[i] = p[i - 1] + a[i];
+        pref[i+1] = pref[i]+a[i];
     }
-    for (int i = 1; i <= n; i++) {
+    for(int i = 0; i < n; i++){
         cin >> h[i];
     }
-    int ans = 0;
-    vector<ii> pq;
-    pq.emplace_back(0, 0);
-    for (int i = 1; i <= n; i++) {
-        // p[i] - x < k
-        // p[i] - k < x
-        if (i > 1 && h[i - 1] % h[i]) {
-            pq.clear();
-            pq.emplace_back(p[i - 1], i - 1);
-            pq.emplace_back(p[i], i);
-            if (a[i] <= k) {
-                ans = max(ans, 1);
+    tam[n-1] = 1;
+    for(int i = n-2; i >= 0; i--){
+        if(h[i]%h[i+1] == 0){
+            tam[i] = tam[i+1]+1;
+        }
+        else {
+            tam[i] = 1;
+        }
+    }
+    int l = 1, r = maxn;
+
+    while (l < r){
+        int mid = (l + r) / 2;
+        int f = false;
+        for (int i = 0; i < n - mid + 1; i++){
+            if (tam[i] < mid) continue;
+            int soma = pref[i + mid] - pref[i];
+            if (soma <= k){
+                f = true;
+                break;
             }
         }
-        int lb = lower_bound(pq.begin(), pq.end(), ii(p[i] - k, -1)) - pq.begin();
-        if (lb < (int)pq.size()) {
-            auto [v, id] = pq[lb];
-            ans = max(ans, i - id);
+        if(f){
+            l = mid + 1;
+        } 
+        else{
+            r = mid - 1;
         }
-        pq.emplace_back(p[i], i);
     }
-    cout << ans << endl;
+
+    cout << "resposta! = " << r << endl;
 }
 
 signed main(){
