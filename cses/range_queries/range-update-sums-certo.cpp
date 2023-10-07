@@ -100,7 +100,7 @@ void update_sum(int l, int r, int x){
 }
 
 signed main(){
-    ios_base::sync_with_stdio(0);cin.tie(0);
+    ios_base::sync_with_stdio(false);cin.tie(0);
     int q; cin >> n >> q;
     for(int i = 1; i <= n; i++) cin >> arr[i];
     build(1, 1, n);
