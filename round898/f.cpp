@@ -30,7 +30,7 @@ void solve(){
     }
     int l = 1, r = maxn;
 
-    while (l < r){
+    while (l <= r){
         int mid = (l + r) / 2;
         int f = false;
         for (int i = 0; i < n - mid + 1; i++){
@@ -44,12 +44,12 @@ void solve(){
         if(f){
             l = mid + 1;
         } 
-        else{
+        else {
             r = mid - 1;
         }
     }
 
-    cout << "resposta! = " << r << endl;
+    cout << r << endl;
 }
 
 signed main(){
