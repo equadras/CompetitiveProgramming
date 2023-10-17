@@ -5,20 +5,16 @@ using namespace std;
 
 void solve(){
     int n; cin >> n;
-    vector<int> v(n);
-    for(int i = 0; i < n; i++){
-        cin >> v[i];
+    vector<int> a(n);
+    for(int i = 0; i < n;i++) cin >> a[i];
+    sort(a.begin(),a.end());
+    for(int i = 1; i < n;i++){
+        if(a[i] <= a[i-1]){
+            cout << "NO" << endl; 
+            return;
+        } 
     }
-    bool flag = false;
-    sort(v.begin(), v.end(), greater<int>());
-
-    for(int i = 1; i < n; i++){
-        if(!(v[i] < v[i-1])){
-            flag = true;
-        }
-    }
-    if(!flag || n == 1)cout << "YES\n";
-    else {cout << "NO\n";}
+    cout << "YES" << endl;
 }
 
 signed main(){
