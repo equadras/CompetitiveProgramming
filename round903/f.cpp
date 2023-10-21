@@ -9,7 +9,7 @@ int dis[maxn];
 int vis[maxn];
 
 void dfs(int v, int d){
-    dis[v] = min(dis[v],d);
+    dis[v] = d;
     vis[v]++;
     for(auto u:adj[v]){
         if(!vis[u]) {
@@ -50,8 +50,9 @@ void solve(){
     dfs(ini,0);
 
     int res = -1;
+
     for(int u:mk){
-        if(u != ini) res = max(res,dis[u]);
+        res = max(res,dis[u]);
     }
 
     cout << ((res + 1) / 2) << endl;
