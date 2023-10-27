@@ -5,25 +5,34 @@ using namespace std;
 //#define int long long
 
 void solve(){
-    int n, a, p; cin >> n >> a >> p;
+    int n, a, q; cin >> n >> a >> q;
     string s; cin >> s;
-    int bom = 0, ruim = 0;
+
+    int on = a;
+    bool todos = false; 
+    if(a == n) todos = true;
     for(int i = 0; i < q; i++){
-        if(a[i] == '+'){
-            bom++; 
+        if(s[i] == '+'){
+            on++; 
         }
-        else ruim++;
-    }
-    if(a + bom < n){
-        cout << "NO" << endl;
-        return;
-    }
-    if(a + (bom-ruim) >= n){
+    } 
+    int agr = a;
+    for(int i = 0; i < q; i++){
+        if(s[i] == '+') agr++;
+        else agr--; 
+        if(agr == n) todos = true;
+    } 
+    
+    if(todos){
         cout << "YES" << endl;
         return;
     }
-    else cout << "MAYBE" << endl;
-        
+    if(on >= n){
+        cout << "MAYBE" << endl;
+        return;
+    }
+    cout << "NO" << endl;
+    
 }
 
 signed main(){
