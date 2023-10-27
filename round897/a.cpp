@@ -4,6 +4,8 @@ using namespace std;
 #define endl "\n"
 //#define int long long
 
+ 
+
 void solve(){
     int n; cin >> n;
     vector <pair<int, int>> a(n);
@@ -14,9 +16,11 @@ void solve(){
     sort(a.begin(), a.end());
     vector <int> b(n);
     int max = n;
+    debug(a);
     for (auto [val, i] : a){
         b[i] = max;
         max--;
+        debug(b);
     }
     for (int x : b) cout << x << " ";
     cout << endl;
@@ -31,3 +35,4 @@ signed main(){
     } else solve();
     return 0;
 }
+
