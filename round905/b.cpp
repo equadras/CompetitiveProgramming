@@ -3,20 +3,40 @@
 using namespace std;
 #define endl "\n"
 //#define int long long
-
 void solve(){
-    int n, k; cin >> n >> k;
-    string s; cin >> s;
-    map <char ,int> mp;
-    for(auto c : s){
-        mp[c]++;
+    int n,k; cin >> n >> k;
+ 
+    vector<int> a(n);
+    for(int i = 0; i < n; i++) cin>>a[i];
+ 
+    if(k==2){
+        int ct = 0;
+        for(int i = 0; i < n; i++)
+            if(a[i] % 2 == 0) ct++;
+        cout << 1 - min(1, ct) << endl;
+    }else if(k == 3 || k ==5){
+        int res = 0;
+        for(int i = 0; i < n; i++){
+            int tp = a[i] % k;
+            if(!tp) tp = k;
+            res = max(res, tp);
+        }
+        cout << k - res << endl;
+    }else{
+        int res = 0;
+        for(int i = 0; i < n; i++){
+            int tp = a[i] % k;
+            if(!tp) tp = k;
+            res = max(res,tp);
+        }
+        int ct = 0;
+        for(int i = 0; i < n; i++)
+            while(a[i] % 2 == 0){
+                a[i] /= 2;
+                ct++;
+            }
+        cout << min(k - res, 2 - min(2, ct)) << endl;
     }
-    int res = 0;
-    for (auto [key, value] : mp)
-        res += value % 2;
-
-    if (res - k <= 1) cout << "YES" << endl;
-    else cout << "NO" << endl;
 }
 
 signed main(){
