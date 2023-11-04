@@ -2,40 +2,40 @@
 
 using namespace std;
 #define endl "\n"
-//#define int long long
+#define int long long
 
 void solve(){
     int n, m, k; cin >> n >> m >> k;
-    deque<int> je(n+1);
-    deque<int> ge(m+1);
+    vector<int> a(n);
+    vector<int> b(m);
     int res = 0;
-    for(int i = 0; i < n; i++){
-        cin >> je[i];
-        res += je[i]; 
-    } 
-    for(int i = 0; i < m; i++) cin >> ge[i];
+    for(int i = 0; i < n; i++) cin >> a[i];
+    for(int i = 0; i < m; i++) cin >> b[i];
 
-    sort(je.begin(), je.end());
-    sort(ge.begin(), ge.end());
-    
-    for(int i = 0; i < k; i++){
-        int ma = ge[m-1], mi = je[0];
-        res += ma;
-        res -= mi;
+    sort(a.begin(),a.end());
+    sort(b.begin(),b.end());
 
-        //remove os manos
-        ge.pop_back();
-        je.pop_front();
-
-        //swap neles
-        je.push_back(ma);
-        ge.push_back(mi);
-
-        sort(je.begin(), je.end());
-        sort(ge.begin(), ge.end());
-
+    if(k & 1){
+        if(a[0] < b[m-1]) swap(a[0], b[m-1]);
+        int res = 0;
+        for(int i = 0; i < n; i++){
+            res += a[i];
+        }
+        cout << res << endl;
     }
-    cout << res << endl;
+    else {
+        if(a[0] < b[m-1]) swap(a[0], b[m-1]);
+
+        sort(a.begin(),a.end());
+        sort(b.begin(),b.end());
+
+        if(b[0] < a[n-1]) swap(a[n-1], b[0]);
+        int res = 0;
+        for(int i = 0; i < n; i++){
+            res += a[i];
+        }
+        cout << res << endl;
+    }
 }
 
 signed main(){
