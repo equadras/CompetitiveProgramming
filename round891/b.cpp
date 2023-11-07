@@ -1,23 +1,18 @@
 #include <bits/stdc++.h>
 
 using namespace std;
+#define endl "\n"
 //#define int long long
 
 void solve(){
-    string x; cin >> x;
-    x='0'+ x;
-    int k = x.size();
-    for(int i = x.size(); i >= 0; i--){
-        if(x[i] >= '5'){
-            x[i-1]++;
-            k = i;
-        }
+    int n; cin >> n;
+    int cnt = 0;
+    for (int i = 0; i < n; i++){
+        int x; cin >> x;
+        if (x % 2 != 0) cnt++;
     }
-    
-    for(int i = (x[0] == '0'); i < x.size(); i++){
-        cout << (i >= k ? '0' : x[i]);
-    }
-    cout << endl;
+    if (cnt % 2 == 0) puts("YES");
+    else puts("NO");
 }
 
 signed main(){

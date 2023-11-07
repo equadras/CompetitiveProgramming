@@ -1,20 +1,33 @@
 #include <bits/stdc++.h>
 
 using namespace std;
+#define endl "\n"
 //#define int long long
 
 void solve(){
-    int n; cin >> n;
-    int m = n*(n-1)/2;
-    vector<int> b(m);
+    int a, b, k, c, m, r, n;
+    vector<int> v, ans;
+    stack<int> st;
+    queue<int> q;
+    priority_queue<int> pq;
+    cin >> n;
 
-    for(int i=0; i<m; i++) cin >> b[i];
-
-    sort(b.begin(),b.end());
-
-    for(int i=0; i<m; i+=--n) cout << b[i] << ' ';
-    int max = 10e3;
-    cout<< max << "\n";
+    for (int i = n * (n - 1) / 2 - 1; i >= 0; --i){
+        cin >> a;
+        v.push_back(a);
+    }
+    sort(v.begin(), v.end());
+    int cnt = n - 1;
+    for (int i = 0; i < v.size(); ){
+        ans.push_back(v[i]);
+        i += cnt;
+        --cnt;
+    }
+    ans.push_back(1e9);
+    for (int i = 0; i < ans.size(); ++i){
+        cout << ans[i] << ' ';
+    }
+    cout << endl;
 }
 
 signed main(){
@@ -26,3 +39,4 @@ signed main(){
     } else solve();
     return 0;
 }
+
