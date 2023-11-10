@@ -8,7 +8,7 @@ void solve(){
     int n; cin >> n;
     int cnt = 0;
     vector<int> v(n - 1);
-    for (int i = 0; i < n-1; i++) cin >> v[i];
+    for (int i = 0; i < v.size(); i++) cin >> v[i];
 
     set<int> st;
     for (int i = 1; i <= n; i++){
@@ -23,7 +23,7 @@ void solve(){
         st.erase(v.front());
     }
 
-    for (int i = 1; i < n-1; i++){
+    for (int i = 1; i < v.size(); i++){
         if (st.find(v[i] - v[i - 1]) != st.end()){
             st.erase(v[i] - v[i - 1]);
         } else {
