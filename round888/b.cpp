@@ -21,15 +21,6 @@ void solve(){
     sort(par.begin(), par.end());
     sort(impar.begin(), impar.end());
 
-	/* for (int i = 0;i < par.size()-1; i++){ */
-        /* cout << par[i] << "  "; */
-	/* } */
-    /* cout << endl; */
-	/* for (int i = 0;i < impar.size()-1; i++){ */
-        /* cout << impar[i] << "  "; */
-	/* } */
-    /* cout << endl; */
-
     vector <int> aux;
     int ind1, ind2;
     ind1 = 0, ind2 = 0;
