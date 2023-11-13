@@ -5,12 +5,15 @@ using namespace std;
 
 void solve(){
     int n, k; cin >> n >> k;
-    vector<int> a(n);
-    for(int i = 0; i < n; i++)cin >> a[i];
-    if(k)
-    for(int i = 0; i < n; i++)cin >> a[i];
-
-
+    vector<int> f(101);
+    vector<int> arr(n);
+    bool flag = false;
+    for (int i=0; i < n; i++) {
+        int num; cin >> num;
+        if (num == k) flag = true;
+    }
+    if (flag) cout << "YES" << endl;
+    else cout << "NO" << endl;
 }
 
 signed main(){
