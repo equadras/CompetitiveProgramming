@@ -5,22 +5,21 @@ using namespace std;
 //#define int long long
 
 void solve(){
-     int n;
-        cin >> n;
-
-        vector<int> arr(n);
-        for (int i = 0; i < n; ++i) {
-            cin >> arr[i];
+    int n; cin >> n;
+    vector<int> a(n);
+    for (int i = 0; i < n; ++i) cin >> a[i];
+    int ans = a[0];
+    int mn = min(0, a[0]), sum = a[0];
+    for (int i = 1; i < n; ++i){
+        if (abs(a[i] % 2) == abs(a[i - 1] % 2)){
+            mn = 0;
+            sum = 0;
         }
-  int current_sum = arr[0];
-    int max_sum = arr[0];
-
-    for (int i = 1; i < n; ++i) {
-        current_sum = max(arr[i], current_sum + arr[i]);
-        max_sum = max(max_sum, current_sum);
+        sum += a[i];
+        ans = max(ans, sum - mn);
+        mn = min(mn, sum);
     }
-    cout << max_sum << endl;
-
+    cout << ans << endl;
 }
 
 signed main(){
