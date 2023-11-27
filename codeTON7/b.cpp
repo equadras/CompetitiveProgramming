@@ -7,19 +7,18 @@ using namespace std;
 void solve(){
     int n; cin >> n;
     string s; cin >> s;
-    int cnt;
-    s[n-1] == 'B' ?  cnt = 1 : cnt = 0;
-    int res = 0;
-    for (int i = n-2; i >= 0; i--){
-        // se for letra B soma 
-        if (s[i] == 'B') cnt++;
-        // se for a eu coloco na res ate o ultimo que era A
-        if (s[i] == 'A'){
-            res += cnt;
-            cnt = 1;
-        }
+    int preb = 0;
+    for (int i = 0; i < n; i++){
+        if (s[i] == 'A') break;
+        preb++;
     }
-    cout << res << endl;
+    int sufa = 0;
+    for (int i = n-1; i >= 0; i--){
+        if (s[i] == 'B') break;
+        sufa++;
+    }
+    if (n - sufa - preb - 1 > 0) cout << n - sufa - preb - 1 << endl;
+    else cout << 0 << endl;
 }
 
 signed main(){
