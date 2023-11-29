@@ -1,12 +1,26 @@
 #include <bits/stdc++.h>
 
 using namespace std;
+#define endl "\n"
 //#define int long long
 
 void solve(){
-    int n; cin >> n;
-    for(int i = 0; i < n; i++) cout << i*2+1 << " "; 
-    cout << endl;
+    int n, k; cin >> n >> k;
+    int x = n - (k - 1);
+    if (x > 0 && x % 2 == 1){
+        cout << "YES" << endl;
+        for (int i = 0; i < k - 1; i++) cout << "1 ";
+        cout << x << endl;
+        return;
+    }
+    x = n - 2 * (k - 1);
+    if (x > 0 && x % 2 == 0) {
+        cout << "YES" << endl;
+        for (int i = 0; i < k - 1; i++) cout << "2 ";
+        cout << x << endl;
+        return;
+    }
+    cout << "NO" << endl;
 }
 
 signed main(){
@@ -18,4 +32,3 @@ signed main(){
     } else solve();
     return 0;
 }
-
