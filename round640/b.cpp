@@ -2,7 +2,6 @@
 
 using namespace std;
 #define endl "\n"
-//#define int long long
 
 void solve(){
     int n, k; cin >> n >> k;
