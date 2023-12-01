@@ -2,7 +2,7 @@
 
 using namespace std;
 #define endl "\n"
-
+//agora vai?
 void solve(){
     int n, k; cin >> n >> k;
     int x = n - (k - 1);
