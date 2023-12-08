@@ -74,27 +74,28 @@ void _debug(X head, Y... tail) {
 void solve(){
     int n; cin >> n;
     vector<int> a(n+1);
-    for (int i = 1; i <= n; i++) cin>>a[i];
+    for (int i = 1; i <= n; i++) cin >> a[i];
 
-    int x = 0; 
-    int ult = a[n], atual, mid;
-    
-    for (int i = n; i > 0; i--){
+    int ult = a[n];
+    int x = 0;
+
+    for(int i = n; i > 0; i--){
         if (a[i] > ult){
-            while (a[i] > ult*2){
-                /* debug(ult, a); */
+            if (a[i] >= ult*2){
+                x += (a[i] - ult)/ult;
+                if (a[i] % ult != 0){
+                    x++;
+                   ult -= 1; 
+                }
+            } else {
                 x++;
-                a[i] -= ult;
-            }
-            x++;
-            ult = min(a[i]/2, a[i] - a[i]/2);
-        }
-        else {
-            //x--;
-            ult = a[i];
-
+                ult = min(a[i]/2, a[i] - a[i]/2); 
+            } 
+        } else {
+            ult = a[i]; 
         }
     }
+
     cout << x << endl;
 }
 
