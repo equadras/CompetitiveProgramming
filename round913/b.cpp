@@ -5,40 +5,24 @@ using namespace std;
 //#define int long long
 
 void solve(){
-    string s; cin >> s;
-	int n = s.size();
-	vector<int> sta, stb;
-	vector<bool> dis(n, 0);
-	for (int i = 0; i < n; i++){
-		if (s[i] == 'B'){
-			if (!sta.size()) continue;
-			else {
-				dis[sta.back()] = 1;
-				sta.pop_back();
-			}
-			continue;
-		} else if (s[i] == 'b'){
-			if (!stb.size()) continue;
-			else {
-				dis[stb.back()] = 1;
-				stb.pop_back();
-			}
-			continue;
-		}
-		
-		if (s[i] >= 'A' && s[i] <= 'Z'){
-			sta.push_back(i);
-		} else if (s[i] >= 'a' && s[i] <= 'z'){
-			stb.push_back(i);
-		}
-	}
-	
-	for (int i = 0; i < n; i++){
-		if (s[i] != 'B' && s[i] != 'b' && !dis[i]){
-			cout << s[i];
-		}
-	}
-	cout << endl;
+    int n; cin >> n;
+    string s; cin>>s;
+    map<char,int> mp;
+    for (auto ele:s) mp[ele]++;
+
+    int mx = 0;
+    for(auto ele:mp) mx = max(mx, ele.second);
+
+    int f = -1;
+    int val = n - mx;
+    if (mx - (val) <=0){
+        if (n % 2 != 0) f = 0;
+        else f = 1;
+    }
+
+    if (f == 0) cout << 1 << endl;
+    else if (f == 1) cout << 0 << endl;
+    else cout<<mx-(val)<<endl;
 }
 
 signed main(){
