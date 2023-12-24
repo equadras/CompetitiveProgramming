@@ -13,7 +13,7 @@ int solve2 (int idx, vector<vector<int>> a, vector<vector<int>> dp, int m){
     //alrai
     for (int i = 0; i < 3; i++){
           if (((1 << i) & (m)) == 0){
-            res = max(res,solve2(idx+1,a,dp,m | (1<<i)) + a[i][idx]);
+            res = max(res,solve2(idx+1,a,dp,m | (1 << i)) + a[i][idx]);
         }
     }
 
