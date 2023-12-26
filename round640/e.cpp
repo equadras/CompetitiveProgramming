@@ -11,17 +11,17 @@ void solve(){
 
     for (int i = 0; i < n; i++) cin >> a[i];
 
-    for(int i = 0; i < n; i++){
+    for (int i = 0; i < n; i++){
 			int soma = a[i];
-			for(int j = i+1; j < n; j++){
+			for (int j = i+1; j < n; j++){
 				soma += a[j];
-				if(soma > n) break;
+				if (soma > n) break;
 				else st.insert(soma);
 			}
 		}
 		int res = 0;
-		for(auto ele : a){
-			if(st.find(ele) != st.end()) res++;
+		for (auto ele : a){
+			if (st.find(ele) != st.end()) res++;
 		}
 		cout << res << endl;
 }
