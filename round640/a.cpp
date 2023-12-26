@@ -5,7 +5,22 @@ using namespace std;
 //#define int long long
 
 void solve(){
+    string s; cin >> s;
+    int n = s.size();
+    vector<string> res; 
 
+    for(int i = 0;i < s.size();i++){
+        if(s[i] != '0'){
+            string t="";
+            t+=s[i];
+            for(int j = i + 1;j < s.size();j++) t+='0';
+            res.push_back(t);
+        }
+    }
+
+    cout << res.size() << endl;
+    for (auto c : res) cout << c << " ";
+    cout << endl;
 }
 
 signed main(){
