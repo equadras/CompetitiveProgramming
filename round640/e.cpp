@@ -6,8 +6,8 @@ using namespace std;
 
 void solve(){
     int n; cin >> n;
-    vector<int> a(n);
-    set<int> st;
+    vector <int> a(n);
+    set <int> st;
 
     for (int i = 0; i < n; i++) cin >> a[i];
 
