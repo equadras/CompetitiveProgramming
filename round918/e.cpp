@@ -2,7 +2,7 @@
 
 using namespace std;
 #define endl "\n"
-//#define int long long
+#define int long long
 
 void solve(){
     int n; cin >> n;
@@ -10,30 +10,26 @@ void solve(){
     for (int i = 1; i <= n; i++) cin >> a[i];
 
     
+    int pp = 0, pi = 0;
+    map<int, int> mp;
 
-    int pi = 0, pp = 0;
+    mp[0] = -1;
 
-    for (int i = 1; i <= n; i++){
+    for (int i = 1; i <= n; ++i){
         if (i & 1) pi += a[i];
         else pp += a[i];
-    }
-     
-    for (int i = 1; i <= n; i++){
-    cout << "pi = " << pi << "\npp = " << pp << endl;
-    cout << endl;
-        if (pi == pp && (pi > 0 && pp > 0)){
-            cout << "YES" << endl; 
+
+        int diff = pp - pi;
+
+        if (mp.find(diff) != mp.end()){
+            cout << "YES" << endl;
             return;
         } 
-        if (i & 1) pi -= a[i];
-        else pp -= a[i];
+        else mp[diff] = i;
     }
 
-    if (pi == pp && (pi > 0 && pp > 0)){
-        cout << "YES" << endl; 
-        return;
-    } 
     cout << "NO" << endl;
+
 }
 
 signed main(){
