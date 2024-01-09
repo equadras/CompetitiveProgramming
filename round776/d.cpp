@@ -42,17 +42,19 @@ void solve(){
     vector<int> a(n);
     for (int i = 0; i < n; i++) cin >> a[i];
     
-    // ir ao contrario vendo o quanto mudou a pos dele  
-    vector<int> dists(n);
-    for (int i = n-1; i >= 0; i--){
-        int dist = 0;
-        for (int i = n-1; i >= 0; i--){
-            dist = a[i] - i;   
-            if (dist < 0) dist = (a[i] - i) + i;
-            debug(dist);
+    vector<int> res(n);
 
-        }
+    // ir ao contrario vendo o quanto mudou a pos dele  
+    for (int i = n; i > 0; i--){
+        auto ele = find(a.begin(), a.end(), i);
+        res[i - 1] = (ele - a.begin()+1) % i;
+        /* debug(a); */
+        rotate(a.begin(), ele, a.end());
+        /* debug(a); */
+        a.erase(a.begin());
     }
+    for (auto i : res) cout << i << " ";
+    cout << endl;
 }
 
 signed main(){
