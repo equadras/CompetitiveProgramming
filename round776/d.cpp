@@ -38,10 +38,21 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 #endif
 
 void solve(){
-   int n; cin >> n;
-   vector<int> a(n);
-   for (int i = 0; i < n; i++) cin >> a[i];
-   
+    int n; cin >> n;
+    vector<int> a(n);
+    for (int i = 0; i < n; i++) cin >> a[i];
+    
+    // ir ao contrario vendo o quanto mudou a pos dele  
+    vector<int> dists(n);
+    for (int i = n-1; i >= 0; i--){
+        int dist = 0;
+        for (int i = n-1; i >= 0; i--){
+            dist = a[i] - i;   
+            if (dist < 0) dist = (a[i] - i) + i;
+            debug(dist);
+
+        }
+    }
 }
 
 signed main(){
