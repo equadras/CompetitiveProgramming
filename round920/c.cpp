@@ -43,13 +43,15 @@ void solve(){
     for (int i = 1; i <= n; i++) cin >> v[i];
 
     for (int i = 1; i <= n; i++){
-        int c = (v[i] - v[i-1]) * a;
-        if (b < c) f -= b;
-        else f -= c;
+        f -= min(b, a * (v[i] - v[i - 1]));
         if (f <= 0){
             cout << "NO" << endl;
             return;
         }
+    }
+    if (f <= 0){
+        cout << "NO" << endl;
+        return;
     }
     cout << "YES" << endl;
 }
