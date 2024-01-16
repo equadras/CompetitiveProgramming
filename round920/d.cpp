@@ -38,12 +38,25 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 #endif
 
 void solve(){
-    int n, m; cin >> n >> m;
-    vector<int> a(n);
-    vector<int> b(m);
-    for (auto &i:a) cin >> a[i];
-    for (auto ele:a) cout << ele << " ";
-    
+    ll n, m; cin >> n >> m;
+    vector<ll> a(n);
+    vector<ll> b(m);
+    ll c = 0;
+    for (int i = 0; i < n; i++) cin >> a[i];
+    for (int i = 0; i < m; i++) cin >> b[i];
+    sort(a.begin(),a.end());
+    sort(b.begin(),b.end());
+    /* debug(a,b); */
+
+    ll la = 0, ra = n-1;
+    ll lb = 0, rb = m-1;
+
+    for (int i = 0; i < n; i++){
+        c += max(abs(a[la]-b[rb]), abs(a[ra]-b[lb]));
+        if (abs(a[la]-b[rb]) > abs(a[ra]-b[lb])){la++;rb--;}
+        else {lb++,ra--;}
+    }
+    cout << c << endl;
 }
 
 signed main(){
