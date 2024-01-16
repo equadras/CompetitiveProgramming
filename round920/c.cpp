@@ -38,25 +38,20 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 #endif
 
 void solve(){
-    int n, f, a, b; cin >> n >> f >> a >> b;
-    vector<int> v(n);
-    for (int i = 0; i < n; i++) cin >> v[i];
-    
-    ll i = 1, m = 0;
-    while (f > 0 && i < n){
-        if (v[i] == m){
-            if (v[i] - v[i-1] > b){
-                f -= b;
-                f+= a;
-            } 
-            i++;
-        }
+    ll n, f, a, b; cin >> n >> f >> a >> b;
+    vector<ll> v(n+1);
+    for (int i = 1; i <= n; i++) cin >> v[i];
 
-        f -= a; 
-        m++;  
+    for (int i = 1; i <= n; i++){
+        int c = (v[i] - v[i-1]) * a;
+        if (b < c) f -= b;
+        else f -= c;
+        if (f <= 0){
+            cout << "NO" << endl;
+            return;
+        }
     }
-    if (i == n-1) cout << "YES" << endl;
-    else cout << "NO" << endl;
+    cout << "YES" << endl;
 }
 
 signed main(){
