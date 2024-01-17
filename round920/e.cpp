@@ -38,12 +38,41 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 #endif
 
 void solve(){
-    int h, w, xa, ya, xb, yb; cin >> h >> w >> xa >> ya >> xb >> yb;
-    if (xa > xb){ //se ja tiverem se passado deu ruim
-        cout << "DRAW" << endl;
+    ll h, w, xa, ya, xb, yb;
+    cin >> h >> w >> xa >>ya >> xb >>yb;
+    ll d = xb - xa;
+    if (d <= 0){
+        cout << "Draw" << endl;
         return;
     }
+    ll e = abs(ya - yb);
+    if (d % 2){
+        if (e <= 1){
+            cout << "Alice" << endl;
+            return;
+        }
+        /* ll dt; */
+        /* if (ya < yb) dt = w - yb; */
+        /* else dt = yb -1; */
+        /* debug(dt,lg); */
+        ll dt = (ya < yb) ? w - yb: yb - 1;
+        /* debug(dt,lg); */
+        ll lg = ceil((long double)d / 2);
 
+        if (dt < lg - 1 && e <= lg - dt)
+            cout << "Alice" << endl;
+        else
+            cout << "Draw" << endl;
+    } else {
+        if (ya == yb){
+            cout << "Bob" << endl;
+            return;
+        }
+        ll dt = (ya < yb)? ya - 1: w - ya;
+        ll lg = d / 2;
+        if (dt < lg && e <= lg - dt) cout << "Bob" << endl;
+        else cout << "Draw" << endl;
+    }
 }
 
 signed main(){
@@ -55,5 +84,6 @@ signed main(){
     } else solve();
     return 0;
 }
+
 
 
