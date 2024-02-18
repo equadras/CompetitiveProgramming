@@ -7,27 +7,29 @@ typedef long long ll;
 
 void solve(){
     int n; cin >> n;
-    vector<int> a(n+1);
+    vector<int> a(n);
     bool f = false;
-    for (int i = 1; i <= n; i++){ 
+    for (int i = 0; i < n; i++){ 
         cin >> a[i];
         if (a[i] != 1) f = true;
     }
 
     /* if (!f){cout << n << endl;return;} */
 
-    int atual = a[1];
-    for (int i = 2; i <= n; i++){
-        int j = 1;
+    int atual = a[0];
+    for (int i = 1; i < n; i++){
+        if (a[i] > atual){
+            atual = a[i];
+        } 
+        else {
+            int qt = (atual/a[i]) + 1;
+            int mano = qt * a[i];
 
-        /* cout << atual << "  " << a[i] << endl; */
-
-        if (atual >= a[i]){
-            while (a[i] * j <= atual) j++;
+            if (mano > atual){
+                atual = mano;
+            }
         }
-        atual = a[i]*j;
     }
-
     cout << atual << endl;
 }
 
