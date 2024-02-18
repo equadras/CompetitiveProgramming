@@ -32,8 +32,8 @@ void solve(){
             prod = prod / a[r];
             r--;
         }
-
     }
+
     cout << endl; 
 }
 
