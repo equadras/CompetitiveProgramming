@@ -40,19 +40,31 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 void solve(){
     ll n, k; cin >> n >> k;
 
-    ll x = 2, p = 1, atual = 0;
+    ll mt = (n+1)/2;
 
-    while (true){
-        for (ll i = p; i <= n; i += x){
-            debug(atual);
-            atual++;
-            if (atual == k){
-                cout << i << endl;
-                return;
-            }
+    if (k <= mt){
+        cout << k*2-1 << endl;
+        return;
+    }
+    ll x = 2;
+    k -= mt;
+    
+    for (ll i = 2;i <= n; i*=2){
+        ll l = 1, r = n/2;
+
+        while (l <= r){
+            ll mid = (l+r)/2;
+
+            if (i * (mid*2-1) <= n){
+                mt = mid;
+                l = mid + 1;
+            } else r = mid-1;
         }
-        x *= 2;
-        p *= 2;
+        if (k <= mt){
+            cout << k*2-1 << endl;
+            return;
+        }
+        k -= mt;
     }
 
 }
