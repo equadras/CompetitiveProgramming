@@ -62,7 +62,6 @@ void solve(){
             } else r = mid-1;
         }
         if (k <= mt){
-            cout << i*(k*2)-1 << endl;
             cout << i*(k*2-1) << endl;
             return;
         }
