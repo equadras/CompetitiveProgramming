@@ -48,12 +48,13 @@ void solve(){
     }
     ll x = 2;
     k -= mt;
-    
-    for (ll i = 2;i <= n; i*=2){
-        ll l = 1, r = n/2;
 
+    for (ll i = 2; i <= n; i*=2){
+        ll l = 1, r = n/2;
+        ll mt = 1;
         while (l <= r){
             ll mid = (l+r)/2;
+            /* debug(l, mid, r, n, mt, k); */
 
             if (i * (mid*2-1) <= n){
                 mt = mid;
@@ -61,7 +62,8 @@ void solve(){
             } else r = mid-1;
         }
         if (k <= mt){
-            cout << k*2-1 << endl;
+            cout << i*(k*2)-1 << endl;
+            cout << i*(k*2-1) << endl;
             return;
         }
         k -= mt;
