@@ -12,23 +12,15 @@ using namespace std;
 typedef long long ll;
 
 void solve(){
-    int n, k; cin >> n >> k;
-    vector<int> a(n);
-    for (int &i : a) cin >> i;
-    sort(a.begin(), a.end());
+    int n; cin >> n;
+    string s;
 
-    int c = 1, ans = 1;
-
-    for(int i = 1; i < n; ++i) {
-        if(a[i] - a[i - 1] > k) {
-            c = 1;
-        } else {
-            c++;
-        }
-
-        ans = max(ans, c);
+    if (n & 1){
+        cout << "NO" << endl;
+        return;
     }
-    cout << n - ans << endl;
+    for (int i = 0; i < n/2; i++) s += "AAB";
+    cout << "YES" << endl <<  s << endl;
 
 }
 
