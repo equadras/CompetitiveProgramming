@@ -12,7 +12,21 @@ using namespace std;
 typedef long long ll;
 
 void solve(){
+    ll a, b, c; cin >> a >> b >> c; 
+    ll tr;
 
+    ll r = b+c;
+
+    ll xx = (3 - b % 3) % 3;
+    if (b > 0 && xx > c){
+        cout << -1 << endl;
+        return;
+    }
+
+    if (r % 3 == 0) tr = r/3;
+    else tr = (r/3)+1;
+
+    cout << a+tr << endl;
 }
 
 signed main(){
