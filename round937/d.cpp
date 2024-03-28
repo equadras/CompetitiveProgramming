@@ -21,31 +21,48 @@ bool zeroum(int x){
     return true;
 }
 
-bool check(int n){
-    if (zeroum(n)) return true;
-
-      while (n % 2 == 0){
-        n /= 2;
-        debug(n);
-    }
-
-    for (int i = 3; i * i <= n; i += 2){
-        while (n % i == 0){
-            debug(n);
-            if (!zeroum(i)) return false;
-            n /= i;
-        }
-    }
-
-    if (n > 1 && !zeroum(n)) return false;
-
-    return true;
-}
-
 void solve(){
     int n; cin >> n;
-    if (check(n)) cout << "YES" << endl;
-    else cout << "NO" << endl;
+    if (zeroum(n)){
+        cout << "YES" << endl;
+        return;
+    }
+
+    int cnt = 0;
+    while (n > 1){
+        vector<int> a;
+        for (int i = 1; i * i<= n; i++){
+            if (n % i == 0){
+                if (n / i == i) a.push_back(i);
+                else {
+                    a.push_back(i);
+                    a.push_back(n/i);
+                }
+            }
+        }
+
+        /* debug(a); */
+        sort(a.begin(),a.end());
+        a.erase(a.begin());
+        /* debug(a); */
+        reverse(a.begin(),a.end());
+
+        cnt = 0;
+        for (auto x: a){
+            if (zeroum(x)){
+                n /= x;
+                cnt++;
+                break;
+            }
+        }
+
+        if (cnt == 0){
+            cout << "NO" << endl;
+            return;
+        }
+
+    }
+    cout << (cnt != 0 ? "YES" : "NO") << endl;
 }
 
 signed main(){
