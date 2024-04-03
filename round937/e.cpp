@@ -19,6 +19,7 @@ void solve(){
     /* int cnt = 0; */
     int cnt1, cnt2;
     int res = 0; bool f = false;
+
     for (int i = 1; i <= n; ++i){
         if (f) break;
         if (n % i == 0){

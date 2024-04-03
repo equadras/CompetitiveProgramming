@@ -29,7 +29,7 @@ void solve(){
     }
 
     int cnt = 0;
-    while (n > 1){
+    /* while (n > 1){ */
         vector<int> a;
         for (int i = 1; i * i<= n; i++){
             if (n % i == 0){
@@ -49,6 +49,7 @@ void solve(){
 
         cnt = 0;
         for (auto x: a){
+            debug(x);
             if (zeroum(x)){
                 n /= x;
                 cnt++;
@@ -61,7 +62,7 @@ void solve(){
             return;
         }
 
-    }
+    /* } */
     cout << (cnt != 0 ? "YES" : "NO") << endl;
 }
 
