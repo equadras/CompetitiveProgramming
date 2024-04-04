@@ -13,10 +13,34 @@ typedef long long ll;
 
 void solve(){
     int a, b, c; cin >> a >> b >> c;
-    if (a+b+c <= 1) cout << -1 << endl;
-    else cout << {
-
+    if (a+1 != c){
+        cout << -1 << endl;
+        return;
     }
+
+
+    int res = 0;
+    int nodo_agr = 1;
+    int nodo = 1;
+
+    int cnt = 0;
+    while (true){
+		if (!nodo_agr){
+	        res++;
+            /* debug(nodo_agr,nodo); */
+            swap(nodo_agr,nodo);
+	    }
+	    nodo_agr--;
+	    nodo++;
+        if (cnt < a) nodo++;
+
+        debug(nodo_agr,nodo);
+
+        cnt++;
+        if (cnt >= a+b) break;
+	}
+
+	cout << res << endl;
 }
 
 signed main(){
