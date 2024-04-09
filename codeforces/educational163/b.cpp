@@ -11,9 +11,7 @@ using namespace std;
 #define endl "\n"
 typedef long long ll;
 
-int tc = 1;
 void solve(){
-    tc++;
     int n; cin >> n;
     vector<int> a(n);
     for (int &i : a) cin >> i;
@@ -22,7 +20,7 @@ void solve(){
     x.push_back(a[n-1]);
     for (int i = n-2; i >= 0; i--){
         int at = a[i];
-        if (a[i] > a[i+1]){
+        if (a[i] > x.back()){
             x.push_back(at % 10);
             x.push_back(at / 10);
         }
