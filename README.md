@@ -1,7 +1,7 @@
 # CompetitiveProgramming
 Place to commit my journey in competitive programming 
 
-#Setup
+# Setup
 - copy this vimrc configuration to your vim configurations file. You need to have the VimPlug manager installed to use it.
 - to utilize the debug feature, move the debug.h file to /usr/local/include.
 - to run the code, I use a vim macro on F9 to compile with the flags below and
