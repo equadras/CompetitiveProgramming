@@ -40,7 +40,7 @@ void solve(){
             }
         }
     }
-    cout << res << " " << pref[res] << endl;
+    cout << l << " " << pref[l] << endl;
 }
 
 signed main(){
