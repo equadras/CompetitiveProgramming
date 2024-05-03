@@ -15,6 +15,8 @@ int n, x;
 string s;
 vector<string> primes;
 
+int cnt = 0;
+
 struct AC {
     const int K = 9;
     const char norm = '1';
@@ -47,6 +49,7 @@ struct AC {
             auto v = next[u][get(s[i])];
             if (v == -1) {
                 next[u][get(s[i])] = v = node(u, s[i]);
+                debug(v);
             }
             u = v;
         }
@@ -113,13 +116,48 @@ void solve(){
     gen("", 0);
 
     debug(primes);
-    
+    int sz = ((int) s.size());
+    int k = 0;
     AC aho;
-    for (int i = 0; i < (int) primes.size(); i++){
-        debug(primes[i]);
+
+    for (int i = 0; i < (int)primes.size(); i++){
         aho.insert(primes[i]);
     }
 
+    k = aho.link.size();
+    /* for (int i = 0; i < k; i++){ */
+    /*     debug(i, aho.exit(i)); */
+    /* } */
+    vector dp (sz+1, vector<int> (k));
+    /* int dp[sz][1005]; */
+
+    for (int i = 0; i <= sz; i++){
+        for (int j = 0; j < k; j++){
+            dp[i][j] = INT_MAX;
+        }
+    }
+
+    dp[0][0] = 0;
+
+    for (int i = 0; i < sz; i++){
+        for (int j = 0; j < k; j++){
+            if (dp[i][j] == INT_MAX) continue; // da dando mreda aqui pq ele n passa....
+                                            
+            dp[i+1][j] = min(dp[i+1][j], dp[i][j]+1);
+            int go = aho.go(j,s[i]);
+
+            if (aho.exit(go) == 0 && aho.out[go] == 0){
+                /* debug(go); */
+                dp[i+1][go] = min(dp[i+1][go], dp[i][j]);
+            }
+
+
+        }
+    }
+
+    /* debug(k); */
+
+    cout << *min_element(dp[sz].begin(),dp[sz].end()) << endl;
 }
 
 signed main(){
