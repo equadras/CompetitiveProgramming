@@ -18,7 +18,7 @@ vector<string> primes;
 int cnt = 0;
 
 struct AC {
-    const int K = 9;
+    /* const int K = 9; */
     const char norm = '1';
     inline int get(int c) { return c - norm; }
 
