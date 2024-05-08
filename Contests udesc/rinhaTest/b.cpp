@@ -13,17 +13,19 @@ typedef long long ll;
 
 void solve(){
     int n, m; cin >> n >> m;
-    vector<int> a(n+1);
+    vector<int> a(n);
+    map<int,int> mp;
     for (int i = 0; i < n; i++){
-        int x; cin >> x;
-        a[x]++;
+        cin >> a[i];
+        mp[a[i]]++;
     }
-    sort(a.begin(),a.end());
+
     int res = 0;
-    for (int i = 1; i < n; i++){
-        res += a[i]; 
+    for (auto& ele : mp){
+        res = max(res,ele.second);
     }
-    cout << res << endl;
+
+    cout << n-res << endl;
 }
 
 signed main(){
