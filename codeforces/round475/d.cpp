@@ -12,7 +12,6 @@ using namespace std;
 typedef long long ll;
 
 struct Aho {
-
     vector<int> link;
     vector<int> termlink;
     vector<int> nds;
