@@ -13,6 +13,7 @@ typedef long long ll;
 
 const int maxn = 2e5+54;
 const int logg = (int) log2(maxn) + 5;
+
 int p[maxn];
 int sz[maxn];
 vector<pair<int,int>> adj[maxn];
@@ -43,23 +44,28 @@ bool anc(int u, int v){  return tin[u] <= tin[v] && tout[u] >= tout[v]; }
 int find (int u){ return u == p[u] ? u : p[u] = find(p[u]); }
 
 int unite (int u, int v){
-    u = find(u); 
+    u = find(v); 
     v = find(v);
 
     if (!(u - v)) return false;
-    if (sz[u] < sz[v]) swap(u,v);
-    p[u] = v;
-    sz[u] += sz[v];
+    if (sz[u] > sz[v]){
+        p[v] = u;
+        sz[u] += sz[v];
+    }
+    else {
+        p[u] = v;
+        sz[v] += sz[u];
+    }
     return true;
 }
 
 int get (int u, int v){
     int res = 0;
-    for (int i = logg-1; i >= 0; i--){
+    for (int i = logg; i >= 0; i--){
         debug(i);
-        if (anc(up[u][i],v) == false){
+        if (anc(up[u][i],v) == true){
             res = max(res,mx[u][i]);
-            u = up[u][i];
+            v = up[v][i];
         }
     }
     return max(res, mx[u][0]);
@@ -71,15 +77,14 @@ signed main(){
     vector<tuple<int, int, int>> edg;
 
     for (int i = 0; i < m; i++){
-        int u, v, w; cin >> u >> v >> w; --u; --v;
+        int u, v, w; cin >> u >> v >> w;
+        --u; --v;
         edg.emplace_back(w, u, v);
     }
-
-    auto aux = edg;
     sort(edg.begin(), edg.end());
 
+
     ll mxp = 0;
-    
     for (int i = 0; i < m; i++){
         auto [w, u, v] = edg[i];
         if (unite(u,v)){
@@ -90,16 +95,12 @@ signed main(){
     }
 
     dfs(0);
-    /* debug(mxp); */
 
-    edg = aux;
+    debug(edg);
     for (auto [w, v, u] : edg){
-        ll aaa =  max(get(u,v), get(v,u));
-        debug(aaa);
-        ll res = mxp + w - aaa;
+        ll res = mxp + w - max(get(u,v), get(v,u));
         cout << res << endl;
     }
-
     return 0;
 }
 
