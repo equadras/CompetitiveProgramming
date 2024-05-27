@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#ifdef LOCAL_DEBUG
+#include "debug.h"
+#else
+#define debug(...)
+#endif
+
+#define endl "\n"
+typedef long long ll;
+
+void solve(){
+    int n; cin >> n;
+    vector<int> a(n+1);
+    int mn = INT_MAX, mni = INT_MAX;
+    for (int i = 1; i <= n; i++){
+        cin >> a[i];
+        if (a[i] < mn){
+            /* debug(a[i], i); */
+            mn = a[i];
+            mni = i;
+            break;
+        }
+    }
+    if (is_sorted(a.begin(),a.end())){ cout << "Yes" << endl; return; }
+    
+    for (int i = mni+1; i <= n; i++){
+        int j = (i%n)+1;
+        /* debug(i, j); */
+        if (a[i] < a[j]){
+            cout << "No" << endl;
+            return;
+        }
+    }
+    cout << "Yes" << endl;
+}
+
+signed main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);
+    int TC = 1;
+    if(TC){
+        cin >> TC;
+        while(TC--) solve();
+    } else solve();
+    return 0;
+}
+
+
+
