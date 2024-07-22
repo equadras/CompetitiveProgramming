@@ -1,0 +1,12 @@
+/home/ema/problemas/config/testcase1.cpp
+/home/ema/problemas/emanuel_leonardo_AcessoRecente_2024-06-12.txt
+/home/ema/problemas/emanuel_leonardo_ultimoacesso.sh
+/home/ema/problemas/Contests udesc/maratonando7/e.cpp
+/home/ema/problemas/Contests udesc/maratonando7/a
+/home/ema/problemas/Contests udesc/maratonando7/f.cpp
+/home/ema/problemas/Contests udesc/maratonando7/.a.cpp.un~
+/home/ema/problemas/Contests udesc/maratonando7/.e.cpp.un~
+/home/ema/problemas/Contests udesc/maratonando7/.f.cpp.un~
+/home/ema/problemas/Contests udesc/maratonando7/a.cpp
+/home/ema/problemas/Contests udesc/maratonando7/e
+/home/ema/problemas/Contests udesc/maratonando7/f
