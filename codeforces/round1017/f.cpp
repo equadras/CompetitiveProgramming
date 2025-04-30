@@ -21,7 +21,6 @@ void solve(){
 
         for (int j = 0; j < m; j++){
             int ele = 1+ ((i * m + j) % k);
-
             if (ele == a[j]) inverte = 1;
             agr[j] = ele;
         }
